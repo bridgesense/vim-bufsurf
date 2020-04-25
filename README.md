@@ -5,7 +5,7 @@ vim-bufsurf
 the version by Ton van den Heuvel.  This version shares the surf history of all
 windows.  Since this includes quite a bit more activity, an additional option 
 (see documentation) has been added that limits the number of historical references. 
-The oldest entries depending on your position in the index are pruned first.
+The oldest entries are pruned first depending on the current position in the index.
 
 This plugin enables surfing through buffers based on a viewing history per
 window.

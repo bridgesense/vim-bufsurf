@@ -100,8 +100,8 @@ The following is a list of all available options:
 
     g:BufSurfHistory              Int value; (default: 15)
 
-        Limits history to x number of entries by deleting the oldest 
-        references.
+        Limits history to x number of entries by pruning the oldest 
+        references based on the current position in the index.
 
 
 LICENSE                                                      *bufsurf-license*

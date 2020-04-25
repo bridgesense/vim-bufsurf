@@ -159,11 +159,11 @@ function s:BufSurfEcho(msg)
     endif
 endfunction
 
-" Keeps buffer history managable since we're sharing it between windows
+" Keeps buffer history manageable since we're sharing it between windows
 function s:BufSurfTrim()
     if g:BufSurfHistory && len(s:history) > g:BufSurfHistory - 1
         let l:marker = len(s:history) - g:BufSurfHistory + 1
-        if s:history_index - l:marker < 1
+        if s:history_index < len(s:history) / 3 
             let l:limit = g:BufSurfHistory - 2
             if l:limit <= 0
                 " for a history setting of one
