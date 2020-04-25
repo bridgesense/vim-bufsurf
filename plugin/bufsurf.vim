@@ -16,6 +16,7 @@ endfunction
 
 call s:InitVariable('g:BufSurfIgnore', '')
 call s:InitVariable('g:BufSurfMessages', 1)
+call s:InitVariable('g:BufSurfHistory', 25)
 
 command BufSurfBack :call <SID>BufSurfBack()
 command BufSurfForward :call <SID>BufSurfForward()
@@ -72,16 +73,8 @@ function s:BufSurfAppend(bufnr)
     if !exists('s:history_index')
         " Make sure that the current buffer will be inserted at the start of
         " the window navigation list.
-        let s:history_index = 0
+        let s:history_index = 0 
         let s:history = []
-
-        " Add all buffers loaded for the current window to the navigation
-        " history.
-        let s:i = a:bufnr + 1
-        while bufexists(s:i)
-            call add(s:history, s:i)
-            let s:i += 1
-        endwhile
 
     " In case the newly added buffer is the same as the previously active
     " buffer, ignore it.
@@ -91,6 +84,7 @@ function s:BufSurfAppend(bufnr)
     " Add the current buffer to the buffer navigation history list of the
     " current window.
     else
+        call s:BufSurfTrim()       
         let s:history_index += 1
     endif
 
@@ -162,6 +156,25 @@ function s:BufSurfEcho(msg)
           echomsg l
         endfor
         echohl None
+    endif
+endfunction
+
+" Keeps buffer history managable since we're sharing it between windows
+function s:BufSurfTrim()
+    if g:BufSurfHistory && len(s:history) > g:BufSurfHistory - 1
+        let l:marker = len(s:history) - g:BufSurfHistory + 1
+        if s:history_index - l:marker < 1
+            let l:limit = g:BufSurfHistory - 2
+            if l:limit <= 0
+                " for a history setting of one
+                let s:history = s:history[0]
+            else
+                let s:history = s:history[0:l:limit]
+            endif
+        else
+            let s:history = s:history[l:marker:]
+            let s:history_index = s:history_index - l:marker           
+        endif        
     endif
 endfunction
 

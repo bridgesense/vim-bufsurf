@@ -1,9 +1,12 @@
 vim-bufsurf
 -----------
 
-**!WARNING:** This is not the original repo and is not maintained.  This is 
-a personalized version that shares browsing history across all windows.  
-Go (here)[https://github.com/ton/vim-bufsurf] for the maintained version.
+**!WARNING:** This is not the original repo. Go (here)[https://github.com/ton/vim-bufsurf] to see 
+the version by Ton van den Heuvel.  This version shares the surf history of all
+windows.  Since this includes quite a bit more activity, an additional option 
+(see documentation) has been added that limit the number of historical references 
+saved to history. The oldest entries depending on your position in the index are 
+pruned first.
 
 This plugin enables surfing through buffers based on a viewing history per
 window.

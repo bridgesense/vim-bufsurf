@@ -98,6 +98,11 @@ The following is a list of all available options:
 
         Indicates whether BufSurf (warning) messages should be displayed.
 
+    g:BufSurfHistory              Int value; (default: 15)
+
+        Limits history to x number of entries by deleting the oldest 
+        references.
+
 
 LICENSE                                                      *bufsurf-license*
 
